@@ -233,6 +233,21 @@ public class UnibotCleanActivity {
                 && btextViewStatusValue3;
     }
 
+    public void clickAuto7(){
+        for (int i = 0; i < 7; i++){
+            //auto
+            textViewDeAuto.click();
+            Common.getInstance().waitForSecond(1000);
+            //standby
+            textViewDeAuto.click();
+            logger.info("i--" + i);
+        }
+        //charge
+        textViewDeCharge.click();
+        logger.info(textViewStatusValue.getText());
+        showText(textViewStatusValue.getText());
+    }
+
     private boolean checkStatus(Map<String, String> tranMap){
         //check auto to standby to charge
         boolean bAuto = checkStatus_clean_charge(tranMap, textViewDeAuto);

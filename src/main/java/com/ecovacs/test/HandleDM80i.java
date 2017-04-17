@@ -425,12 +425,15 @@ class HandleDM80i {
         MainActivity.getInstance().clickDM80i();
         UnibotCleanActivity.getInstance().showActivity();
         UnibotCleanActivity.getInstance().showText("-");
-        return UnibotCleanActivity.getInstance().translate(languageMap);
+        boolean bResult = UnibotCleanActivity.getInstance().translate(languageMap);
+        //only for work log
+        UnibotCleanActivity.getInstance().clickAuto7();
+        return bResult;
     }
 
     boolean translateUnibotSetting(){
         //will delete
-        MainActivity.getInstance().clickDM80i();
+        //MainActivity.getInstance().clickDM80i();
         //
         UnibotCleanActivity.getInstance().clickSetting();
         /*SettingActivity.getInstance().showActivity();

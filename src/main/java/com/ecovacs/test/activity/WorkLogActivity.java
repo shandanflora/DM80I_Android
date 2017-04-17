@@ -5,9 +5,14 @@ import com.ecovacs.test.common.TranslateErrorReport;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +22,7 @@ import java.util.Map;
  */
 public class WorkLogActivity {
     private static WorkLogActivity workLogActivity = null;
+    private AndroidDriver driver = null;
 
     @FindBy(id = "com.ecovacs.ecosphere.intl:id/titleContent")
     private MobileElement title = null;
@@ -42,6 +48,7 @@ public class WorkLogActivity {
 
     public void init(AndroidDriver driver){
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        this.driver = driver;
     }
 
     public void showActivity(){
@@ -85,29 +92,71 @@ public class WorkLogActivity {
         return btitle && btimeTotal && btimeTips && bcleanHistory;
     }
 
-    private boolean historyListView(Map<String, String> tranMap){
-        List<MobileElement> rows = listHistory.findElementsByClassName("android.widget.RelativeLayout");
-        System.out.println("rows.size()--" + rows.size());
-        for(MobileElement row:rows){
-            List<MobileElement> linears = row.findElementsByClassName("android.widget.LinearLayout");
-            System.out.println("linears.size()" + linears.size());
-            for(MobileElement linear:linears) {
-                List<MobileElement> linearList = linear.findElementsByClassName("android.widget.LinearLayout");
-                if(linearList.size() > 0){
-                    System.out.println("continue!!!");
-                    continue;
-                }
-                List<MobileElement> eleDate= linear.findElementsById("com.ecovacs.ecosphere.intl:id/tv_date");
-                List<MobileElement> eleDuration= linear.findElementsById("com.ecovacs.ecosphere.intl:id/tv_qingSaoMianJi");
-                if (eleDate.size() > 0){
-                    System.out.println(eleDate.get(0).getText());
-                }else if(eleDuration.size() > 0){
-                    System.out.println(eleDuration.get(0).getText());
+    private boolean translateListView(Map<String, String> tranMap){
+        String strLanguage = tranMap.get("language");
+        List<MobileElement> textViews = listHistory.findElementsByClassName("android.widget.TextView");
+        int iSize = textViews.size();
+        System.out.println("textViews.size()--" + iSize);
+        for(MobileElement textView: textViews) {
+            //System.out.println("textView--" + textView.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("h:mm");
+            boolean dateFlag=true;
+            try {
+                Date date = sdf.parse(textView.getText());
+            } catch (ParseException e){
+                dateFlag=false;
+            }finally{
+                if (!dateFlag) {//not date
+                    int iIndex = textView.getText().trim().indexOf(" ");
+                    //today
+                    if (iIndex == -1){
+                        boolean bToday = textView.getText().trim().equalsIgnoreCase(tranMap.get("random_deebot_today"));
+                        if (!bToday){
+                            TranslateErrorReport.getInstance().insetNewLine(
+                                    strLanguage, "Work log", textView.getText().trim(),
+                                    tranMap.get("random_deebot_today"), "fail");
+                        }
+                        System.out.println("today--" + textView.getText());
+                    }else {//duration
+                        String strDur = textView.getText().trim().substring(0, iIndex);
+                        boolean bDuration = strDur.equalsIgnoreCase(tranMap.get("random_deebot_time"));
+                        if (!bDuration){
+                            TranslateErrorReport.getInstance().insetNewLine(
+                                    strLanguage, "Work log", strDur,
+                                    tranMap.get("random_deebot_time"), "fail");
+                        }
+                        System.out.println("duration--" + strDur);
+                    }
+
                 }
             }
         }
         return true;
+    }
 
+    private boolean historyListView(Map<String, String> tranMap){
+        translateListView(tranMap);
+        System.out.println("list page-- 1");
+        swipeList();
+        Common.getInstance().waitForSecond(1000);
+        translateListView(tranMap);
+        System.out.println("list page-- 2");
+        return true;
+    }
+
+    private void swipeList(){
+        Point point = listHistory.getLocation();
+        Dimension dimension = listHistory.getSize();
+        int iRectX = point.getX();
+        int iRectY = point.getY();
+        int iWidth = dimension.getWidth();
+        int iHeight = dimension.getHeight();
+
+        point.x = iRectX + iWidth/2;
+        point.y = iRectY + iHeight/2;
+
+        driver.swipe(point.x, point.y ,
+                point.x, point.y - iHeight/3, 500);
     }
 
     public boolean translate(Map<String, String> tranMap){
