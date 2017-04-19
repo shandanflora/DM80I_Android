@@ -22,8 +22,8 @@
                     <exclude name="translateUserAgree"></exclude>
                     <include name="translateLanguage"></include>
                     <include name="translateHelpCenter"></include>
-                    <include name="translateChangePass"></include>
-                    <include name="translateUnibotClean"></include>-->
+                    <include name="translateChangePass"></include>-->
+                    <include name="translateUnibotClean"></include>
                     <include name="translateUnibotSetting"></include>
                     <include name="translateWorkLog"></include>
                     <!--<include name="translateContinueClean"></include>

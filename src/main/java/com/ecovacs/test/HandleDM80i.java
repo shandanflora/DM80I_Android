@@ -459,7 +459,7 @@ class HandleDM80i {
 
     }
 
-    boolean translateContiuneClean_Status(){
+    boolean translateContinueClean_Status(){
         //after check return to setting
         SettingActivity.getInstance().clickContinuedClean();
         ContinueCleanActivity.getInstance().clickSwitch();

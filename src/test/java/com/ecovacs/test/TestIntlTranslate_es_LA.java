@@ -139,7 +139,7 @@ public class TestIntlTranslate_es_LA {
 
     @Test
     public void translateContiuneClean_Status(){
-        Assert.assertTrue(HandleDM80i.getInstance().translateContiuneClean_Status());
+        Assert.assertTrue(HandleDM80i.getInstance().translateContinueClean_Status());
     }
 
     @Test
