@@ -54,7 +54,7 @@
                     <include name="translateAddTimeSchedule_repeat"></include>
                     <include name="translateOverTimeSchedule"></include>
                 </methods>
-            </class>>
+            </class>
         </classes>
     </test>
 </suite>

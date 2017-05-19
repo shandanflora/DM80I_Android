@@ -22,7 +22,7 @@ public class TestIntlTranslate_Japanese {
             return;
         }
         HandleDM80i.getInstance().init(driver);
-        HandleDM80i.getInstance().translate_init("Japanese");
+        HandleDM80i.getInstance().translate_init("Japanese", "Japanese");
         //HandleDM80i.getInstance().translateErrorReport_init();
     }
 

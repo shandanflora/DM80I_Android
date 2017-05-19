@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <!-- allow-return-values 默认值为FALSE,表示返回值将被忽略 -->
-<suite name="Translation_English" allow-return-values="true">
+<suite name="Translation_German" allow-return-values="true">
     <test verbose="2" name="TestMethods" preserve-order="true">
         <classes>
-            <class name="com.ecovacs.test.TestIntlTranslate_English">
+            <class name="com.ecovacs.test.TestIntlTranslate_German">
                 <methods>
                     <include name="translateWelcome"></include>
                     <include name="translateLogin"></include>
@@ -54,7 +54,7 @@
                     <include name="translateAddTimeSchedule_repeat"></include>
                     <include name="translateOverTimeSchedule"></include>
                 </methods>
-            </class>>
+            </class>
         </classes>
     </test>
 </suite>

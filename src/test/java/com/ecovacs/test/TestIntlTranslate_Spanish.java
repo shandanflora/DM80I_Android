@@ -22,13 +22,13 @@ public class TestIntlTranslate_Spanish {
             return;
         }
         HandleDM80i.getInstance().init(driver);
-        HandleDM80i.getInstance().translate_init("English", "English");
-        HandleDM80i.getInstance().translateErrorReport_init();
+        HandleDM80i.getInstance().translate_init("es-ES", "Spanish");
+        //HandleDM80i.getInstance().translateErrorReport_init();
     }
 
     @AfterClass
     public void tearDown(){
-        HandleDM80i.getInstance().changeLanguage(PropertyData.getProperty("German"));
+        HandleDM80i.getInstance().changeLanguage(PropertyData.getProperty("French"));
         driver.quit();
     }
 
