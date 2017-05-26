@@ -36,7 +36,9 @@ public class AddKey {
             tranMap.put("language", strColName);
 
             for(int i = 1; i < iRowSize; i++){//headline(i = 0)
+                System.out.println("*******row********" + i);
                 if(0 != TranslateIntl.getInstance().getCellValue(sheet.getRow(i).getCell(0)).length()){
+                    System.out.println("*******row********" + i);
                     tranMap.put(
                             TranslateIntl.getInstance().getCellValue(sheet.getRow(i).getCell(iColNum)).trim(),
                             TranslateIntl.getInstance().getCellValue(sheet.getRow(i).getCell(0)).trim());
@@ -88,6 +90,6 @@ public class AddKey {
 
     public static void main(String args[]) {
         Map<String, String> tranMap = readExcel("Random_translate.xlsx", "Chinese");
-        addKey(tranMap, "DM80i.xlsx", "version2.0");
+        addKey(tranMap, "DN720.xlsx", "工作表1");
     }
 }
