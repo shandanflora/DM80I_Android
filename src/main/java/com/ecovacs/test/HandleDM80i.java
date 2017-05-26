@@ -228,9 +228,9 @@ class HandleDM80i {
 
     void changeLanguage(String strLanguage){
         //return deebot clean
-        //Common.getInstance().goBack(androidDriver, 1);
+        Common.getInstance().goBack(androidDriver, 1);
         //return main
-        //Common.getInstance().goBack(androidDriver, 1);
+        Common.getInstance().goBack(androidDriver, 1);
         /*if(!login("Japan", PropertyData.getProperty("hotmail_email"), PropertyData.getProperty("login_pass"))){
             logger.error("login failed!!!");
             return;
@@ -252,17 +252,18 @@ class HandleDM80i {
         TranslateErrorReport.getInstance().init(list);
     }
 
-    void translate_init(String strColName){
-        Map<String, String> tranMapCommon = TranslateIntl.getInstance().readExcel("Translate.xlsx", strColName);
+    void translate_init(String strColNameComm, String strColName){
+        Map<String, String> tranMapCommon = TranslateIntl.getInstance().readExcel("Translate.xlsx", strColNameComm);
         if(tranMapCommon.isEmpty()){
             logger.error("The language map is empty!!!");
             return;
         }
-        Map<String, String> tranMap = TranslateIntl.getInstance().readExcel("Random_translate.xlsx", strColName);
+        Map<String, String> tranMap = TranslateIntl.getInstance().readExcel("SLIM2.xlsx", strColName);
         if(tranMap.isEmpty()){
             logger.error("The language map is empty!!!");
             return;
         }
+        tranMap.put("language", strColName);
         tranMap.putAll(tranMapCommon);
         languageMap = tranMap;
     }
@@ -303,7 +304,7 @@ class HandleDM80i {
     }
 
     boolean translateMain(){
-        //login("Japan", PropertyData.getProperty("hotmail_email"), PropertyData.getProperty("login_pass"));
+        login("Japan", PropertyData.getProperty("hotmail_email"), PropertyData.getProperty("login_pass"));
         //
         MainActivity.getInstance().showActivity();
         //

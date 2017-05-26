@@ -127,13 +127,13 @@ public class ContinueCleanActivity {
 
     public boolean translateSameTime(Map<String, String> tranMap){
         String strLanguage = tranMap.get("language");
-        boolean bContent = promptContent.getText().trim().equalsIgnoreCase(tranMap.get("random_deebot_no_disturb_error"));
+        boolean bContent = promptContent.getText().trim().equalsIgnoreCase(tranMap.get("random_deebot_no_disturb_error").trim());
         if(!bContent) {
             TranslateErrorReport.getInstance().insetNewLine(
                     strLanguage, "ContinueClean", promptContent.getText(),
                     tranMap.get("random_deebot_no_disturb_error"), "fail");
         }
-        boolean bSure = promptSure.getText().trim().equalsIgnoreCase(tranMap.get("random_deebot_btn_known"));
+        boolean bSure = promptSure.getText().trim().equalsIgnoreCase(tranMap.get("random_deebot_btn_known").trim());
         if(!bSure){
             TranslateErrorReport.getInstance().insetNewLine(
                     strLanguage, "ContinueClean", promptSure.getText(),
