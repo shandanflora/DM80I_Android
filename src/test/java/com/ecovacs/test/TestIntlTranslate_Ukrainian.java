@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
  * Created by ecosqa on 17/2/7.
  * test translate of intl app
  */
-public class TestIntlTranslate_Japanese {
+public class TestIntlTranslate_Ukrainian {
     private AndroidDriver driver = null;
 
     @BeforeClass
@@ -22,13 +22,13 @@ public class TestIntlTranslate_Japanese {
             return;
         }
         HandleDM80i.getInstance().init(driver);
-        HandleDM80i.getInstance().translate_init("Japanese", "Japanese");
+        HandleDM80i.getInstance().translate_init("Ukrainian", "Ukrainian");
         //HandleDM80i.getInstance().translateErrorReport_init();
     }
 
     @AfterClass
     public void tearDown(){
-        HandleDM80i.getInstance().changeLanguage(PropertyData.getProperty("TW_ZH"));
+        HandleDM80i.getInstance().changeLanguage(PropertyData.getProperty("English"));
         driver.quit();
     }
 
@@ -138,8 +138,13 @@ public class TestIntlTranslate_Japanese {
     }
 
     @Test
-    public void translateContiuneClean_Status(){
+    public void translateContinueClean_Status(){
         Assert.assertTrue(HandleDM80i.getInstance().translateContinueClean_Status());
+    }
+
+    @Test
+    public void translateContinueClean_SameTime(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateSameContinueTime());
     }
 
     @Test
@@ -195,6 +200,56 @@ public class TestIntlTranslate_Japanese {
     @Test
     public void translateAddTimeSchedule_sun(){
         Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_sun());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_mon(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_mon());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_tues(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_tues());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_wed(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_wed());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_thurs(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_thurs());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_fri(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_fri());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_sat(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_sat());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_weekends(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_weekends());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_workday(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_workday());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_everyday(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_everyday());
+    }
+
+    @Test
+    public void translateAddTimeSchedule_repeat(){
+        Assert.assertTrue(HandleDM80i.getInstance().translateAddTimeSchedule_repeat());
     }
 
     @Test

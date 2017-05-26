@@ -22,8 +22,8 @@ public class TestIntlTranslate_es_LA {
             return;
         }
         HandleDM80i.getInstance().init(driver);
-        HandleDM80i.getInstance().translate_init("es-LA", "es-LA");
-        //HandleDM80i.getInstance().translateErrorReport_init();
+        HandleDM80i.getInstance().translate_init("es-LA", "LA-Spanish");
+        HandleDM80i.getInstance().translateErrorReport_init();
     }
 
     @AfterClass
