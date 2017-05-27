@@ -264,6 +264,7 @@ class HandleDM80i {
             return;
         }
         tranMap.put("language", strColName);
+        logger.info(tranMap.get("language"));
         tranMap.putAll(tranMapCommon);
         languageMap = tranMap;
     }

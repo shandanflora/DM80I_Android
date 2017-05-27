@@ -23,7 +23,7 @@ public class TestIntlTranslate_HK_ZH {
         }
         HandleDM80i.getInstance().init(driver);
         HandleDM80i.getInstance().translate_init("HK", "HK");
-        //HandleDM80i.getInstance().translateErrorReport_init();
+        HandleDM80i.getInstance().translateErrorReport_init();
     }
 
     @AfterClass
