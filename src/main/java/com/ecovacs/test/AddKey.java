@@ -89,7 +89,7 @@ public class AddKey {
     }
 
     public static void main(String args[]) {
-        Map<String, String> tranMap = readExcel("Random_translate.xlsx", "Chinese");
-        addKey(tranMap, "DN720.xlsx", "工作表1");
+        Map<String, String> tranMap = readExcel("DR930.xlsx", "Chinese");
+        addKey(tranMap, "DR930翻译.xlsx", "Sheet1");
     }
 }
